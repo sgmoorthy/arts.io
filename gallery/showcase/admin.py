@@ -6,16 +6,17 @@ from .models import ArtPiece, Gallery
 class ArtPieceInline(admin.TabularInline):
     fields = ['title', 'artist', 'image', 'gallery', 'pub_date']
     model = ArtPiece
-    extra = 1
+    extra = 0
 
 
 class GalleryAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['name']}),
+        ('Gallery Info', {'fields': ['name', 'artist', 'pub_date']}),
     ]
     inlines = [ArtPieceInline]
     list_display = ('name',)
     search_fields = ['name',]
+
 
 class ArtPieceAdmin(admin.ModelAdmin):
     fieldsets = [
