@@ -7,7 +7,9 @@ from .models import ArtPiece, Gallery
 
 
 def index(request):
-    return HttpResponse('Hello there. Welcome to the showcase index page.')
+    latest_galleries = Gallery.objects.order_by('-pub_date')[:10]
+    context = {'latest_galleries': latest_galleries}
+    return render(request, 'showcase/index.html', context)
 
 def gallery(request, gallery_id):
     p = get_object_or_404(Gallery, pk=gallery_id)

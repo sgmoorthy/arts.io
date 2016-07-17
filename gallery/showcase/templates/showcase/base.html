@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<head lang="en">
+  <title>{{ title }}Gallery</title>
+  <meta charset="utf-8">
+  {% include "showcase/bootstrap.html" %}
+  <link rel="stylesheet" type="text/css" href="{% static 'showcase/style.css' %}" />
+</head>
+
+<body>
+  {% include "showcase/navigation.html" %}
+
+  <div class="container">
+    <div id="content">
+      <div class="starter-template">
+
+        {% block content %}
+
+        {% endblock content %}
+
+        {% include "showcase/bootstrap-scripts.html" %}
+      </div> <!-- starter-template -->
+    </div> <!-- content -->
+  </div> <!-- container -->
+</body>
+
+</html>

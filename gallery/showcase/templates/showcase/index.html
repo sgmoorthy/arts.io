@@ -1,0 +1,18 @@
+{% extends "showcase/base.html" %}
+
+{% block content %}
+  {% if latest_galleries %}
+    <ul class="list-group">
+      {% for gallery in latest_galleries %}
+        <li class="list-group-item">
+          <a class="gallery-link" href="{% url 'showcase:gallery' gallery.id %}">{{ gallery.name }}</a>
+          <p class="gallery-description">{{ gallery.artist }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="alert alert-info" role="alert">
+      No galleries available at this time...
+    </div>
+  {% endif %}
+{% endblock content %}
