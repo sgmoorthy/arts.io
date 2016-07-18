@@ -10,7 +10,9 @@
       {% for image in gallery.artpiece_set.all %}
         <li class="list-group-item gallery-item">
           <h4>{{ image.title }} ({{ image.artist }})</h4>
-          <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive"/>
+          <a href="{% url 'showcase:art' image.id %}">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive"/>
+          </a>
           <p>{{ image.pub_date }}</p>
         </li>
       {% endfor %}

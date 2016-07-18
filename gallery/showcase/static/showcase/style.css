@@ -26,3 +26,8 @@
 .gallery-item {
   padding-bottom: 50px;
 }
+
+.pub-date {
+  margin-top: 10px;
+  font-size: 16px;
+}

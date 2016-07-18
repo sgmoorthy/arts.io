@@ -19,5 +19,8 @@ def gallery(request, gallery_id):
     return render(request, 'showcase/gallery.html', context)
 
 def art_piece(request, art_id):
-    p = get_object_or_404(ArtPiece, pk=art_id)
-    return HttpResponse('Thanks for viewing art piece ' + str(art_id))
+    art_piece = get_object_or_404(ArtPiece, pk=art_id)
+    context = {
+        'image': art_piece,
+    }
+    return render(request, 'showcase/art.html', context)
