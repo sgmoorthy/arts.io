@@ -12,8 +12,11 @@ def index(request):
     return render(request, 'showcase/index.html', context)
 
 def gallery(request, gallery_id):
-    p = get_object_or_404(Gallery, pk=gallery_id)
-    return HttpResponse('Thanks for viewing gallery ' + str(gallery_id))
+    gallery = get_object_or_404(Gallery, pk=gallery_id)
+    context = {
+        'gallery': gallery,
+    }
+    return render(request, 'showcase/gallery.html', context)
 
 def art_piece(request, art_id):
     p = get_object_or_404(ArtPiece, pk=art_id)

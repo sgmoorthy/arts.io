@@ -1,0 +1,20 @@
+{% extends "showcase/base.html" %}
+
+{% block content %}
+
+  <div class="gallery">
+    <h1>{{ gallery.name }}</h1>
+    <h3>By: <a href="#">{{ gallery.artist }}</a></h3>
+
+    <ul class="list-group">
+      {% for image in gallery.artpiece_set.all %}
+        <li class="list-group-item gallery-item">
+          <h4>{{ image.title }} ({{ image.artist }})</h4>
+          <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive"/>
+          <p>{{ image.pub_date }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+{% endblock content %}

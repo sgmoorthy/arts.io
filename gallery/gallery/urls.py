@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.staticfiles.urls import static
+
+from .settings import MEDIA_URL, MEDIA_ROOT
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('showcase.urls', namespace='showcase'))
 ]
+
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
