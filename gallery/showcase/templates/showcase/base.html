@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <head lang="en">
-  <title>{{ title }}Gallery</title>
+  <title>{% if title %}{{ title }} | {% endif%}Gallery.io</title>
   <meta charset="utf-8">
   {% include "showcase/bootstrap.html" %}
   <link rel="stylesheet" type="text/css" href="{% static 'showcase/style.css' %}" />

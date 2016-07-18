@@ -8,13 +8,17 @@ from .models import ArtPiece, Gallery
 
 def index(request):
     latest_galleries = Gallery.objects.order_by('-pub_date')[:10]
-    context = {'latest_galleries': latest_galleries}
+    context = {
+        'latest_galleries': latest_galleries,
+        'title': 'New Galleries',
+    }
     return render(request, 'showcase/index.html', context)
 
 def gallery(request, gallery_id):
     gallery = get_object_or_404(Gallery, pk=gallery_id)
     context = {
         'gallery': gallery,
+        'title': gallery.name,
     }
     return render(request, 'showcase/gallery.html', context)
 
@@ -22,5 +26,6 @@ def art_piece(request, art_id):
     art_piece = get_object_or_404(ArtPiece, pk=art_id)
     context = {
         'image': art_piece,
+        'title': art_piece.title,
     }
     return render(request, 'showcase/art.html', context)
