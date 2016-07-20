@@ -29,8 +29,22 @@
   margin-bottom: 50px;
 }
 
+.gallery-rating {
+  padding-top: 10px;
+  vertical-align: middle;
+}
+
+.gallery-rating .badge {
+  margin-bottom: 6px;
+}
+
+.gallery-rating h4 {
+  text-align: left;
+  display: inline;
+}
+
 .pub-date {
-  padding-top: 20px;
+  padding-top: 10px;
   font-size: 18px;
 }
 

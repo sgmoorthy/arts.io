@@ -24,7 +24,20 @@
           <a href="{% url 'showcase:art' image.id %}">
             <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive"/>
           </a>
-          <p class="pub-date">{{ image.pub_date }}</p>
+
+          <!-- Rating -->
+          <div class="gallery-rating">
+              {% if gallery.rank %}
+                <h4>Rating:</h4> <span class="badge">
+                  {% for i in stars_range %}
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  {% endfor %}
+              {% else %}
+                <h4>Rating: --</h4>
+              {% endif %}
+            </span>
+          </div>
+          <p class="pub-date">Published {{ image.pub_date }}</p>
         </div>
       </div>
     {% endfor %}
