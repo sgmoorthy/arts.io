@@ -12,14 +12,14 @@ class ArtPieceInline(admin.TabularInline):
 class GalleryAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Gallery Info', {'fields': ['name', 'artist', 'description', 'pub_date']}),
-        ('Gallery Ranking', {'fields': ['rank', 'total_rankers']})
+        ('Gallery Rating', {'fields': ['rating', 'total_raters']})
     ]
     inlines = [ArtPieceInline]
-    list_display = ('name', 'artist', 'rank')
+    list_display = ('name', 'artist', 'rating')
     search_fields = ['name', 'artist', 'description']
 
     def get_readonly_fields(self, request, obj=None):
-        return ['rank', 'total_rankers']
+        return ['rating', 'total_raters']
 
 
 class ArtPieceAdmin(admin.ModelAdmin):

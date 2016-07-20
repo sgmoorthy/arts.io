@@ -19,7 +19,7 @@ def gallery(request, gallery_id):
     context = {
         'gallery': gallery,
         'title': gallery.name,
-        'stars_range': range(int(gallery.rank)),
+        'stars_range': range(int(gallery.rating)),
     }
     return render(request, 'showcase/gallery.html', context)
 
