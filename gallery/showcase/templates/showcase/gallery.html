@@ -35,8 +35,9 @@
     {% endfor %}
 
     <!-- form button to rate the gallery -->
-    <form class="rate-form">
-      <button type="button" class="btn btn-primary">
+    <form id="rate-form" action="{% url 'showcase:star_gallery' gallery.id %}" method="post" class="rate-form">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary" id="starBtn" value="star">
         <h4>Star this gallery?&nbsp;&nbsp;</h4>
         <span class="badge">
           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>

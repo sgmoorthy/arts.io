@@ -30,3 +30,10 @@ def art_piece(request, art_id):
         'title': art_piece.title,
     }
     return render(request, 'showcase/art.html', context)
+
+
+def star_gallery(request, gallery_id):
+    gal = get_object_or_404(Gallery, pk=gallery_id)
+    gal.rating += 1
+    gal.save()
+    return HttpResponseRedirect(reverse('showcase:gallery', args=(gal.id,)))
