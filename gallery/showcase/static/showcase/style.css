@@ -24,10 +24,10 @@
 }
 
 .gallery-item {
-  padding-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .pub-date {
-  margin-top: 10px;
-  font-size: 16px;
+  padding-top: 20px;
+  font-size: 18px;
 }

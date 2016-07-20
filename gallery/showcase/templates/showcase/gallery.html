@@ -6,17 +6,20 @@
     <h1>{{ gallery.name }}</h1>
     <h3>By: <a href="#">{{ gallery.artist }}</a></h3>
 
-    <ul class="list-group">
-      {% for image in gallery.artpiece_set.all %}
-        <li class="list-group-item gallery-item">
-          <h4>{{ image.title }} ({{ image.artist }})</h4>
+    {% for image in gallery.artpiece_set.all %}
+      <div class="panel panel-primary gallery-item">
+        <div class="panel-heading">
+          <h2 class="panel-title">{{ image.title }} ({{ image.artist }})</h2>
+        </div>
+
+        <div class="panel-body">
           <a href="{% url 'showcase:art' image.id %}">
             <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive"/>
           </a>
-          <p>{{ image.pub_date }}</p>
-        </li>
-      {% endfor %}
-    </ul>
+          <p class="pub-date">{{ image.pub_date }}</p>
+        </div>
+      </div>
+    {% endfor %}
   </div>
 
 {% endblock content %}
