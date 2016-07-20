@@ -1,13 +1,26 @@
 {% extends "showcase/base.html" %}
 
 {% block content %}
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Welcome!</h1>
+      <p>Hi. Welcome to Gallery.io, where artists and designers are
+        free to showcase their artwork in a clean, digital format...
+        for free!</p>
+      <p>Here you will find some of the newest galleries created.
+        Please enjoy and rate the content appropriately!</p>
+    </div>
+  </div>
+
+  <h2>New Galleries:</h2>
+  <hr />
+
   {% if latest_galleries %}
-    <h1>New Galleries</h1>
     <ul class="list-group">
       {% for gallery in latest_galleries %}
         <li class="list-group-item">
           <a class="gallery-link" href="{% url 'showcase:gallery' gallery.id %}">{{ gallery.name }}</a>
-          <p class="gallery-description">{{ gallery.artist }}</p>
+          <p class="gallery-description">Created by <a herf="#">{{ gallery.artist }}</a></p>
         </li>
       {% endfor %}
     </ul>
