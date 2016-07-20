@@ -6,6 +6,14 @@
     <h1>{{ gallery.name }}</h1>
     <h3>By: <a href="#">{{ gallery.artist }}</a></h3>
 
+    {% if gallery.description %}
+      <div class="well">
+        <p class="gallery-description">
+          {{ gallery.description }}
+        </p>
+      </div>
+    {% endif %}
+
     {% for image in gallery.artpiece_set.all %}
       <div class="panel panel-primary gallery-item">
         <div class="panel-heading">

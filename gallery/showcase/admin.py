@@ -11,11 +11,12 @@ class ArtPieceInline(admin.TabularInline):
 
 class GalleryAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Gallery Info', {'fields': ['name', 'artist', 'pub_date']}),
+        ('Gallery Info', {'fields': ['name', 'artist', 'description', 'pub_date']}),
+        ('Ranking', {'fields': ['rank', 'total_rankers']})
     ]
     inlines = [ArtPieceInline]
-    list_display = ('name',)
-    search_fields = ['name',]
+    list_display = ('name', 'artist', 'rank')
+    search_fields = ['name', 'artist', 'description']
 
 
 class ArtPieceAdmin(admin.ModelAdmin):

@@ -11,6 +11,9 @@ class Gallery(models.Model):
     name = models.CharField(max_length=200, default='')
     artist = models.CharField(max_length=100, default='')
     pub_date = models.DateField('date published', default=timezone.now)
+    description = models.TextField(max_length=1000, default='')
+    rank = models.FloatField(default=0.0)
+    total_rankers = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
