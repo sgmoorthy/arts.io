@@ -26,20 +26,21 @@
 }
 
 .gallery-item {
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .gallery-rating {
   padding-top: 10px;
   vertical-align: middle;
-}
-
-.gallery-rating .badge {
-  margin-bottom: 6px;
+  padding-bottom: 10px;
 }
 
 .gallery-rating h4 {
   text-align: left;
+  display: inline;
+}
+
+.rate-form h4 {
   display: inline;
 }
 
@@ -50,4 +51,8 @@
 
 .navbar-brand {
   font-size: 25px;
+}
+
+body {
+  padding-bottom: 50px;
 }

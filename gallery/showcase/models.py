@@ -12,8 +12,7 @@ class Gallery(models.Model):
     artist = models.CharField(max_length=100, default='')
     pub_date = models.DateField('date published', default=timezone.now)
     description = models.TextField(max_length=1000, default='')
-    rating = models.FloatField(default=0.0)
-    total_raters = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0.0)
 
     def __str__(self):
         return self.name

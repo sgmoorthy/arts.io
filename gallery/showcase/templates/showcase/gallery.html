@@ -5,6 +5,11 @@
   <div class="gallery">
     <h1>{{ gallery.name }}</h1>
     <h3>By: <a href="#">{{ gallery.artist }}</a></h3>
+    <!-- Rating -->
+    <div class="gallery-rating">
+        <h4>{{ gallery.rating }}</h4>
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    </div>
 
     {% if gallery.description %}
       <div class="well">
@@ -24,23 +29,20 @@
           <a href="{% url 'showcase:art' image.id %}">
             <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive"/>
           </a>
-
-          <!-- Rating -->
-          <div class="gallery-rating">
-              {% if gallery.rating %}
-                <h4>Rating:</h4> <span class="badge">
-                  {% for i in stars_range %}
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                  {% endfor %}
-              {% else %}
-                <h4>Rating: --</h4>
-              {% endif %}
-            </span>
-          </div>
           <p class="pub-date">Published {{ image.pub_date }}</p>
-        </div>
-      </div>
+        </div> <!-- panel body for gallery image -->
+      </div> <!-- panel for gallery item -->
     {% endfor %}
-  </div>
+
+    <!-- form button to rate the gallery -->
+    <form class="rate-form">
+      <button type="button" class="btn btn-primary">
+        <h4>Star this gallery?&nbsp;&nbsp;</h4>
+        <span class="badge">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        </span>
+      </button>
+    </form>
+  </div> <!-- gallery -->
 
 {% endblock content %}
