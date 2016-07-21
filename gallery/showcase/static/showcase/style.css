@@ -34,9 +34,15 @@
   padding-bottom: 10px;
 }
 
+.gallery-rating span {
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+
 .gallery-rating h4 {
   text-align: left;
   display: inline;
+  vertical-align: middle;
 }
 
 .art-rating {
