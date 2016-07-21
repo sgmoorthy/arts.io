@@ -4,10 +4,12 @@ from .models import ArtPiece, Gallery
 
 
 class ArtPieceInline(admin.TabularInline):
-    fields = ['title', 'artist', 'image', 'gallery', 'pub_date']
+    fields = ['title', 'artist', 'description', 'image', 'stars', 'gallery', 'pub_date']
     model = ArtPiece
     extra = 0
 
+    def get_readonly_fields(self, request, obj=None):
+        return ['stars']
 
 class GalleryAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -19,15 +21,23 @@ class GalleryAdmin(admin.ModelAdmin):
     search_fields = ['name', 'artist', 'description']
 
     def get_readonly_fields(self, request, obj=None):
-        return ['rating']
+        if obj:
+            return ['rating']
+        return []
 
 
 class ArtPieceAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['title', 'artist', 'image', 'gallery', 'pub_date']}),
+        ('Art Info', {'fields': ['title', 'artist', 'description', 'image', 'gallery', 'pub_date']}),
+        ('Art Rating', {'fields': ['stars']})
     ]
     list_filter = ['artist', 'pub_date']
     search_fields = ['title', 'artist']
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ['stars']
+        return []
 
 
 admin.site.register(Gallery, GalleryAdmin)
