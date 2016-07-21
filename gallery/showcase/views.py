@@ -37,3 +37,10 @@ def star_gallery(request, gallery_id):
     gal.rating += 1
     gal.save()
     return HttpResponseRedirect(reverse('showcase:gallery', args=(gal.id,)))
+
+
+def star_art(request, art_id):
+    art = get_object_or_404(ArtPiece, pk=art_id)
+    art.stars += 1
+    art.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

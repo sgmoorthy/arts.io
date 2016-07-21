@@ -4,8 +4,20 @@
 
   <h1>{{ image.title }}</h1>
   <h3>By: <a href="#">{{ image.artist }}</a></h3>
+  <div class="gallery-rating">
+      <h4>{{ image.stars }}</h4>
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+  </div>
 
   <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive"/>
   <p class="pub-date">{{ image.pub_date }}</p>
+
+  <!-- form button to rate the art piece  -->
+  <form id="rate-form" action="{% url 'showcase:star_art' image.id %}" method="post" class="rate-form">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary" id="starBtn" value="star">
+      <h4>Star <span class="glyphicon glyphicon-star" aria-hidden="true"></span></h4>
+    </button>
+  </form>
 
 {% endblock content %}

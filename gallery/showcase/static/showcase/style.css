@@ -39,8 +39,22 @@
   display: inline;
 }
 
+.art-rating {
+  margin-top: 10px;
+}
+
+.art-rating h4 {
+  display: inline;
+  text-align: left;
+}
+
 .rate-form h4 {
   display: inline;
+}
+
+.rate-form-embedded {
+  text-align: right;
+  float: right;
 }
 
 .pub-date {

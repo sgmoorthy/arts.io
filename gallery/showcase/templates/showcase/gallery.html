@@ -29,6 +29,19 @@
           <a href="{% url 'showcase:art' image.id %}">
             <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive"/>
           </a>
+          <div class="art-rating">
+              <h4>{{ image.stars }}</h4>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+          </div>
+
+          <!-- form button to rate the art piece  -->
+          <form id="rate-form" action="{% url 'showcase:star_art' image.id %}" method="post" class="rate-form rate-form-embedded">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary" id="starBtn" value="star">
+              <h4>Star <span class="glyphicon glyphicon-star" aria-hidden="true"></span></h4>
+            </button>
+          </form>
+
           <p class="pub-date">Published {{ image.pub_date }}</p>
         </div> <!-- panel body for gallery image -->
       </div> <!-- panel for gallery item -->
