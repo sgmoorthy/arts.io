@@ -11,3 +11,4 @@ If you'd like to try Gallery.io out for yourself, since I haven't deployed it ye
 2. Change into the application directory:
 `cd Gallery.io/gallery/`
 3. Start the server: `python manage.py runserver`
+4. Go to the site at *localhost:8000*
