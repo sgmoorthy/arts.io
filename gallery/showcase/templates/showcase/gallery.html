@@ -3,21 +3,22 @@
 {% block content %}
 
   <div class="gallery">
-    <h1>{{ gallery.name }}</h1>
+    <h1 class="gallery-title">
+      {{ gallery.name }}
+      <!-- form button to rate the gallery -->
+      <form id="rate-form" action="{% url 'showcase:star_gallery' gallery.id %}" method="post" class="rate-form">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary pull-right" id="starBtn" value="star">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        </button>
+      </form>
+    </h1>
+
     <h3>By <a href="#">{{ gallery.artist }}</a></h3>
     <!-- Rating -->
     <div class="gallery-rating">
         <h4>{{ gallery.rating }}</h4>
         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-
-        <!-- form button to rate the gallery -->
-        <form id="rate-form" action="{% url 'showcase:star_gallery' gallery.id %}" method="post" class="rate-form">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-primary" id="starBtn" value="star">
-            <h4>Gallery&nbsp;&nbsp;</h4>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-          </button>
-        </form>
     </div>
 
 
@@ -48,8 +49,8 @@
           <!-- form button to rate the art piece  -->
           <form id="rate-form" action="{% url 'showcase:star_art' image.id %}" method="post" class="rate-form rate-form-embedded">
             {% csrf_token %}
-            <button type="submit" class="btn btn-primary" id="starBtn" value="star">
-              <h4>Art Piece&nbsp;&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></h4>
+            <button type="submit" class="btn btn-primary pull-right" id="starBtn" value="star">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
             </button>
           </form>
 
