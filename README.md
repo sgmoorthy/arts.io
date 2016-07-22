@@ -10,12 +10,10 @@ If you'd like to try Gallery.io out for yourself, since I haven't deployed it ye
 ```
 git clone https://github.com/zach-king/Gallery.io.git
 ```
-
 2. Change into the application directory
 ```
 cd Gallery.io/gallery/
 ```
-
 3. Start the server
 ```
 python manage.py runserver
