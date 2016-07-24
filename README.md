@@ -12,3 +12,7 @@ If you'd like to try Gallery.io out for yourself, since I haven't deployed it ye
 `cd Gallery.io/gallery/`
 3. Start the server: `python manage.py runserver`
 4. Go to the site at *localhost:8000*
+
+
+Please note this application is meant as a learning project while I learn the basics of 
+using Django.
