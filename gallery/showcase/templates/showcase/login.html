@@ -3,6 +3,14 @@
 {% block content %}
 <form id="login-form" action="{% url 'showcase:login' %}" method="post" class="register-form">
   {% csrf_token %}
+  {% if error_messages %}
+    {% for msg in error_messages %}
+      <div class="alert alert-danger" role="alert">
+        {{ msg }}
+      </div>
+    {% endfor %}
+  {% endif %}
+  
   <div class="input-group input-group-lg">
     <input type="text" class="form-control" placeholder="Username" name="username">
     <input type="password" class="form-control" placeholder="password" maxlength="100" name="password">

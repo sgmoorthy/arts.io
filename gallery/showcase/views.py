@@ -94,8 +94,10 @@ def register(request):
 def signin(request):
     context = {
         'title': 'Login',
-
+        'error_messages': []
     }
+
+    failed = False
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -108,10 +110,15 @@ def signin(request):
                 print('successfully logged in')
             else:
                 # Return a 'disabled account' error message
-                print('account disabled')
+                context['error_messages'].append('Your account has been disabled')
+                failed = True
         else:
             # return an 'invalid login' error message
-            print('failed to login')
+            context['error_messages'].append('Invalid username/password')
+            failed = True
+
+        if failed:
+            return render(request, 'showcase/login.html', context)
     else:
         # show form
         return render(request, 'showcase/login.html', context)
