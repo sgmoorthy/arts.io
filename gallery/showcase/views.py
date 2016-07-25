@@ -3,9 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 from .models import ArtPiece, Gallery
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 
 
 def index(request):
@@ -81,11 +82,29 @@ def register(request):
     return render(request, 'showcase/register.html', {'title': 'Register', 'form': form})
 
 
-def create_user(request):
-    if request.POST['password'] != request.POST['password_verify']:
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+def signin(request):
+    context = {
+        'title': 'Login',
 
-    username = request.POST['username']
-    email = request.POST['email']
-    password = request.POST['password']
+    }
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                # redirect to a successful page
+                print('successfully logged in')
+            else:
+                # Return a 'disabled account' error message
+                print('account disabled')
+        else:
+            # return an 'invalid login' error message
+            print('failed to login')
+    else:
+        # show form
+        return render(request, 'showcase/login.html', context)
+
     return HttpResponseRedirect(reverse('showcase:index'))
