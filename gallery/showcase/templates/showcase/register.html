@@ -3,6 +3,14 @@
 {% block content %}
 <form id="register-form" action="{% url 'showcase:register' %}" method="post" class="register-form">
   {% csrf_token %}
+  {% if error_messages %}
+    {% for msg in error_messages %}
+      <div class="alert alert-danger" role="alert">
+        {{ msg }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
   <div class="input-group input-group-lg">
     <input type="text" class="form-control" placeholder="username" name="username">
     <input type="text" class="form-control" placeholder="first name" name="fname">

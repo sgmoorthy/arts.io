@@ -52,7 +52,10 @@ def star_art(request, art_id):
 def register(request):
     context = {
         'title': 'Register',
+        'error_messages': []
     }
+
+    failed = False
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -63,9 +66,11 @@ def register(request):
         password_verify = request.POST['password_verify']
 
         if User.objects.filter(username=username).exists():
-            print('user already exists')
-        elif password != password_verify:
-            print('passwords do not match')
+            context['error_messages'].append('Username already exists')
+            failed = True
+        if password != password_verify:
+            context['error_messages'].append('Passwords do not match')
+            failed = True
         else:
             # Create user
             new_user = User.objects.create_user(
@@ -77,6 +82,9 @@ def register(request):
             )
             new_user.save()
             print('successfully created new user', username)
+
+        if failed:
+            return render(request, 'showcase/register.html', context)
     else:
         return render(request, 'showcase/register.html', context)
 
