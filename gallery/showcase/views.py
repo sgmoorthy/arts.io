@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 from .models import ArtPiece, Gallery
+from .forms import RegisterForm
 
 
 def index(request):
@@ -44,3 +46,46 @@ def star_art(request, art_id):
     art.stars += 1
     art.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def register(request):
+    if request.method == 'POST':
+        # create form instance
+        form = RegisterForm(request.POST)
+
+        # check if it's valid
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            if form.cleaned_data['password'] != form.cleaned_data['password_verify']:
+                return HttpResponseRedirect(reverse('showcase:register'))
+
+            if User.objects.filter(username=form.cleaned_data['username']).exists():
+                return HttpResponseRedirect(reverse('showcase:register'))
+
+            # Create user
+            new_user = User.objects.create_user(
+                form.cleaned_data['username'],
+                form.cleaned_data['email'],
+                form.cleaned_data['password'],
+                first_name=form.cleaned_data['fname'],
+                last_name=form.cleaned_data['lname']
+            )
+            new_user.save()
+
+            # redirect to a new URL
+            return HttpResponseRedirect(reverse('showcase:index'))
+    else:
+        # if a GET (or other method) create a blank form
+        form = RegisterForm()
+
+    return render(request, 'showcase/register.html', {'title': 'Register', 'form': form})
+
+
+def create_user(request):
+    if request.POST['password'] != request.POST['password_verify']:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    username = request.POST['username']
+    email = request.POST['email']
+    password = request.POST['password']
+    return HttpResponseRedirect(reverse('showcase:index'))

@@ -1,0 +1,15 @@
+{% extends "showcase/base.html" %}
+
+{% block content %}
+<form action="{% url 'showcase:register' %}" method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit" class="btn btn-primary pull-right" id="submitBtn" value="star">Submit</button>
+</form>
+
+
+
+
+
+
+{% endblock content %}
