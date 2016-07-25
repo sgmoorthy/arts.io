@@ -4,7 +4,7 @@
   <div class="jumbotron">
     <div class="container">
       <h1>Welcome!</h1>
-      <p>Hi. Welcome to Gallery.io, where artists and designers are
+      <p>Hi{% if user.is_authenticated %}, {{ user.first_name }}{% endif %}. Welcome to Gallery.io, where artists and designers are
         free to showcase their artwork in a clean, digital format...
         for free!</p>
       <p>Here you will find some of the newest galleries created.

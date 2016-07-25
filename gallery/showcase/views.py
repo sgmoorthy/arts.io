@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from .models import ArtPiece, Gallery
 from .forms import RegisterForm, LoginForm
@@ -123,4 +123,9 @@ def signin(request):
         # show form
         return render(request, 'showcase/login.html', context)
 
+    return HttpResponseRedirect(reverse('showcase:index'))
+
+
+def signout(request):
+    logout(request)
     return HttpResponseRedirect(reverse('showcase:index'))
