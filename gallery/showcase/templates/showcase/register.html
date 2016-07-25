@@ -4,7 +4,9 @@
 <form id="register-form" action="{% url 'showcase:register' %}" method="post" class="register-form">
   {% csrf_token %}
   <div class="input-group input-group-lg">
-    <input type="text" class="form-control" placeholder="Username" name="username">
+    <input type="text" class="form-control" placeholder="username" name="username">
+    <input type="text" class="form-control" placeholder="first name" name="fname">
+    <input type="text" class="form-control" placeholder="last name" name="lname">
     <input type="text" class="form-control" placeholder="email" maxlength="40" name="email">
     <input type="password" class="form-control" placeholder="password" maxlength="100" name="password">
     <input type="password" class="form-control" placeholder="re-enter password" maxlength="100" name="password_verify">

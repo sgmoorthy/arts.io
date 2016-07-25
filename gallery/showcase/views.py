@@ -50,36 +50,37 @@ def star_art(request, art_id):
 
 
 def register(request):
+    context = {
+        'title': 'Register',
+    }
+
     if request.method == 'POST':
-        # create form instance
-        form = RegisterForm(request.POST)
+        username = request.POST['username']
+        email = request.POST['email']
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        password = request.POST['password']
+        password_verify = request.POST['password_verify']
 
-        # check if it's valid
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            if form.cleaned_data['password'] != form.cleaned_data['password_verify']:
-                return HttpResponseRedirect(reverse('showcase:register'))
-
-            if User.objects.filter(username=form.cleaned_data['username']).exists():
-                return HttpResponseRedirect(reverse('showcase:register'))
-
+        if User.objects.filter(username=username).exists():
+            print('user already exists')
+        elif password != password_verify:
+            print('passwords do not match')
+        else:
             # Create user
             new_user = User.objects.create_user(
-                form.cleaned_data['username'],
-                form.cleaned_data['email'],
-                form.cleaned_data['password'],
-                first_name=form.cleaned_data['fname'],
-                last_name=form.cleaned_data['lname']
+                username,
+                email,
+                password,
+                first_name=fname,
+                last_name=lname
             )
             new_user.save()
-
-            # redirect to a new URL
-            return HttpResponseRedirect(reverse('showcase:index'))
+            print('successfully created new user', username)
     else:
-        # if a GET (or other method) create a blank form
-        form = RegisterForm()
+        return render(request, 'showcase/register.html', context)
 
-    return render(request, 'showcase/register.html', {'title': 'Register', 'form': form})
+    return HttpResponseRedirect(reverse('showcase:index'))
 
 
 def signin(request):
