@@ -94,3 +94,7 @@ body {
 .portfolio .well {
   height: 280px;
 }
+
+.loginBtn {
+  margin-top: 10px;
+}
