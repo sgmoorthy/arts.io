@@ -14,7 +14,7 @@
       </form>
     </h1>
 
-    <h3>By <a href="#">{{ gallery.artist }}</a></h3>
+    <h3>By <a href="{% url 'showcase:portfolio' gallery.artist.user.username %}">{{ gallery.artist }}</a></h3>
     <!-- Rating -->
     <div class="gallery-rating">
         <h4>{{ gallery.rating }}</h4>

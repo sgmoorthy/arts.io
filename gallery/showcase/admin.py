@@ -3,7 +3,13 @@ from django.contrib import admin
 from .models import ArtPiece, Gallery, ArtistProfile
 
 class ArtistProfileAdmin(admin.ModelAdmin):
-    search_fields = ['user.username',]
+    fieldsets = [
+        ('Artist Profile', {'fields': ['user', 'avatar', 'bio', 'join_date']})
+    ]
+    list_display = ('user', 'join_date')
+
+    def get_readonly_fields(self, request, obj=None):
+        return ['join_date', 'user']
 
 class ArtPieceInline(admin.TabularInline):
     fields = ['title', 'artist', 'description', 'image', 'stars', 'gallery', 'pub_date']
@@ -24,7 +30,7 @@ class GalleryAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return ['rating']
+            return ['rating', 'pub_date']
         return []
 
 
@@ -38,7 +44,7 @@ class ArtPieceAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return ['stars']
+            return ['stars', 'pub_date']
         return []
 
 

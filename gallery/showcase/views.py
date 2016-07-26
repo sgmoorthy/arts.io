@@ -140,16 +140,17 @@ def signout(request):
 def portfolio(request, username):
     context = {
         'title': None,
-        'user': None,
+        'artist': None,
         'error_messages': [],
     }
     user = User.objects.get(username=username)
-    if user is None:
+    artist = ArtistProfile.objects.get(user=user)
+    if artist is None:
         # show 'no user' page
         context['error_messages'].append('No artist under the username %s' % username)
         return render(request, 'showcase/index.html', context)
 
     # user exists; response with user data
     context['title'] = '{0} {1}\'s Portfolio'.format(user.first_name, user.last_name)
-    context['user'] = user
+    context['artist'] = artist
     return render(request, 'showcase/portfolio.html', context)

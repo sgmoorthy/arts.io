@@ -4,13 +4,13 @@
 
   <div class="portfolio">
     <h1 class="artist-title">
-      {{ user.first_name }}&nbsp;{{ user.last_name }}
+      {{ artist.user.first_name }}&nbsp;{{ artist.user.last_name }}
     </h1>
 
     <div class="row">
       <div class="col-xs-6 col-md-3">
         <a href="#" class="thumbnail">
-          <img src="..." alt="{{ user.username }}'s profile picture">
+          <img src="{{ artist.avatar.url }}" alt="{{ artist.user.username }}'s profile picture" class="img-responsive">
         </a>
       </div>
     </div>
