@@ -9,7 +9,9 @@ class ArtistProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'join_date')
 
     def get_readonly_fields(self, request, obj=None):
-        return ['join_date', 'user']
+        if obj:
+            return ['join_date', 'user']
+        return ['join_date']
 
 class ArtPieceInline(admin.TabularInline):
     fields = ['title', 'artist', 'description', 'image', 'stars', 'gallery', 'pub_date']
@@ -17,7 +19,7 @@ class ArtPieceInline(admin.TabularInline):
     extra = 0
 
     def get_readonly_fields(self, request, obj=None):
-        return ['stars']
+        return ['stars', 'pub_date']
 
 class GalleryAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -31,7 +33,7 @@ class GalleryAdmin(admin.ModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         if obj:
             return ['rating', 'pub_date']
-        return []
+        return ['pub_date']
 
 
 class ArtPieceAdmin(admin.ModelAdmin):
@@ -45,7 +47,7 @@ class ArtPieceAdmin(admin.ModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         if obj:
             return ['stars', 'pub_date']
-        return []
+        return ['pub_date']
 
 
 

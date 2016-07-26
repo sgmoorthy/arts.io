@@ -8,6 +8,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">New Galleries</a></li>
         {% if user.is_authenticated %}
+        <li><a href="{% url 'showcase:portfolio' user.username %}">My Portfolio</a></li>
         <li><a href="/logout">Logout</a></li>
         {% else %}
         <li><a href="/login">Login</a></li>
