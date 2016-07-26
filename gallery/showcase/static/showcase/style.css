@@ -82,3 +82,15 @@
 body {
   padding-bottom: 50px;
 }
+
+.avatar {
+  display: inline;
+}
+
+.artist-title {
+  display: inline;
+}
+
+.portfolio .well {
+  height: 280px;
+}

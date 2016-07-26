@@ -3,16 +3,35 @@
 {% block content %}
 
   <div class="portfolio">
-    <h1 class="artist-title">
-      {{ artist.user.first_name }}&nbsp;{{ artist.user.last_name }}
-    </h1>
-
-    <div class="row">
-      <div class="col-xs-6 col-md-3">
-        <a href="#" class="thumbnail">
+    <div class="well well-lg">
+      <div class="col-xs-6 col-md-3 avatar pull-right">
+        <div class="thumbnail">
           <img src="{{ artist.avatar.url }}" alt="{{ artist.user.username }}'s profile picture" class="img-responsive">
-        </a>
+        </div>
       </div>
+
+      <h1 class="artist-title">
+        {{ artist.user.first_name }}&nbsp;{{ artist.user.last_name }}
+      </h1>
+
+      <p>{{ artist.bio }}<p>
+    </div>
+
+    <hr />
+
+    <h2>{{ artist.user.first_name }}'s Art</h2>
+    <div class="row">
+    {% for art in artist.artpiece_set.all %}
+      <div class="col-lg-4">
+        <a href="{% url 'showcase:art' art.id %}" class="thumbnail">
+          <img src="{{ art.image.url }}" alt="{{ art.title }}" class="img-responsive">
+        </a>
+          <div class="caption">
+            <h4>{{ art.title }}</h4>
+            <p>{{ art.description }}</p>
+          </div>
+      </div>
+    {% endfor %}
     </div>
   </div> <!-- portfolio -->
 
