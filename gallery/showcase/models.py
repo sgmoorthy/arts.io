@@ -5,8 +5,12 @@ from django.contrib.auth.models import User
 import datetime
 
 class ArtistProfile(models.Model):
+    """
+    The user, or 'artist' profile. Contains the django.contrib.auth.models.User
+    instance and other fields.
+    """
     user = models.OneToOneField(User)
-    avatar = models.ImageField(default='art/placeholder.jpg')
+    avatar = models.ImageField(default='/art/placeholder.jpg')
     join_date = models.DateField('date joined', default=timezone.now)
     bio = models.TextField(max_length=250, default='')
 
