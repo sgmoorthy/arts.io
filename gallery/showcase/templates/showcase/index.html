@@ -20,7 +20,7 @@
       {% for gallery in latest_galleries %}
         <li class="list-group-item">
           <a class="gallery-link" href="{% url 'showcase:gallery' gallery.id %}">{{ gallery.name }}</a>
-          <p class="gallery-description">Created by <a herf="#">{{ gallery.artist }}</a></p>
+          <p class="gallery-description">Created by <a herf="#">{{ gallery.artist.user.username }}</a></p>
         </li>
       {% endfor %}
     </ul>

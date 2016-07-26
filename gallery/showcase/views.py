@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
-from .models import ArtPiece, Gallery
+from .models import ArtPiece, Gallery, ArtistProfile
 from .forms import RegisterForm, LoginForm
 
 
@@ -78,10 +78,16 @@ def register(request):
                 email,
                 password,
                 first_name=fname,
-                last_name=lname
+                last_name=lname,
             )
             new_user.save()
+            new_profile = ArtistProfile.objects.create(user=new_user)
+            new_profile.save()
+
             print('successfully created new user', username)
+            context['title'] = '{0} {1}\'s Portfolio'.format(fname, lname)
+            context['user'] = new_user
+            return render(request, 'showcase/portfolio.html', context)
 
         if failed:
             return render(request, 'showcase/register.html', context)
@@ -129,3 +135,21 @@ def signin(request):
 def signout(request):
     logout(request)
     return HttpResponseRedirect(reverse('showcase:index'))
+
+
+def portfolio(request, username):
+    context = {
+        'title': None,
+        'user': None,
+        'error_messages': [],
+    }
+    user = User.objects.get(username=username)
+    if user is None:
+        # show 'no user' page
+        context['error_messages'].append('No artist under the username %s' % username)
+        return render(request, 'showcase/index.html', context)
+
+    # user exists; response with user data
+    context['title'] = '{0} {1}\'s Portfolio'.format(user.first_name, user.last_name)
+    context['user'] = user
+    return render(request, 'showcase/portfolio.html', context)

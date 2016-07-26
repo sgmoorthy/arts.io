@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from .models import ArtPiece, Gallery
+from .models import ArtPiece, Gallery, ArtistProfile
 
+class ArtistProfileAdmin(admin.ModelAdmin):
+    search_fields = ['user.username',]
 
 class ArtPieceInline(admin.TabularInline):
     fields = ['title', 'artist', 'description', 'image', 'stars', 'gallery', 'pub_date']
@@ -18,7 +20,7 @@ class GalleryAdmin(admin.ModelAdmin):
     ]
     inlines = [ArtPieceInline]
     list_display = ('name', 'artist', 'rating')
-    search_fields = ['name', 'artist', 'description']
+    search_fields = ['name', 'description']
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
@@ -40,5 +42,7 @@ class ArtPieceAdmin(admin.ModelAdmin):
         return []
 
 
+
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(ArtPiece, ArtPieceAdmin)
+admin.site.register(ArtistProfile, ArtistProfileAdmin)

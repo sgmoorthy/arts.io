@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^login/$', views.signin, name='login'),
     url(r'^logout/$', views.signout, name='logout'),
+    url(r'^portfolio/(?P<username>[\w]+)/$', views.portfolio, name='portfolio'),
 ]
