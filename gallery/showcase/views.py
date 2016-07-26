@@ -52,7 +52,8 @@ def star_art(request, art_id):
 def register(request):
     context = {
         'title': 'Register',
-        'error_messages': []
+        'error_messages': [],
+        'artist': None,
     }
 
     failed = False
@@ -86,10 +87,11 @@ def register(request):
 
             print('successfully created new user', username)
             context['title'] = '{0} {1}\'s Portfolio'.format(fname, lname)
-            context['user'] = new_user
+            context['artist'] = new_profile
             return render(request, 'showcase/portfolio.html', context)
 
         if failed:
+            print("Failed to register account")
             return render(request, 'showcase/register.html', context)
     else:
         return render(request, 'showcase/register.html', context)
