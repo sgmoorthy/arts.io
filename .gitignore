@@ -1,0 +1,8 @@
+*.sqlite3
+*.py[cod]
+*.log
+.DS_STORE
+__pycache__/
+*.so
+settings/*
+settings/
